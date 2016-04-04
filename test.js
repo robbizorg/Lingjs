@@ -25,9 +25,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			complexity.className += "result";
 			complexity.appendChild(document.createTextNode("Complexity: " + ling.vocabComplexity()));
 
+			var find = document.createElement("p");
+			find.className += "result";
+			find.appendChild(document.createTextNode("Most Common: " + ling.mostCommonWord()));
+
 			result.appendChild(count);
 			result.appendChild(document.createElement("br"));
 			result.appendChild(complexity);
+			result.appendChild(document.createElement("br"));
+			result.appendChild(find);
 			result.appendChild(document.createElement("br"));
 
 			document.getElementById("input").value = "";			

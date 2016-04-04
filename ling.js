@@ -6,6 +6,7 @@ function Ling(text) {
 		
 		var arr = text.split(" ");
 		var uniqueWords = unique(arr);
+		var uniqueWordswithCount = unique(arr, {count: true});
 
 		function count() {
 			return arr.length;
@@ -15,21 +16,56 @@ function Ling(text) {
 			return uniqueWords.length;
 		}
 
+		function mostCommonWord() {
+			var max = {word: "placeholder", count: -1};
+			console.log(uniqueWordswithCount);
+			for (var wordObj in uniqueWordswithCount) {
+				if (uniqueWordswithCount[wordObj].count > max.count)
+					max = wordObj;
+			}
+			return max;
+		}
+
 		function vocabComplexity() {
 			return uniqueWordsCounter() / count() * 100;
+		}
+
+		function get(word) {
+			var result = arr.indexOf(word);
+
+			if (result >= 0) {
+				return result;
+			} else {
+				return "Not Found";
+			}
 		}
 
 		// Private Functions
 		function unique(array, object) {
 			// Gets the Unique Values in an Array;
-			var uniqueArr = [];
-			for (var i = 0; i < array.length; i++) {
-				if (!contains(uniqueArr, array[i])) {
-					uniqueArr.push(array[i]);
-				} else {
-					continue;
+			if (object !== undefined && object.count == true) {
+				uniqueArr = {};
+				for (var i = 0; i < array.length; i++) {
+					if (uniqueArr[array[i]] === undefined) {
+						uniqueArr[array[i]] = {
+							word: array[i],
+							count: 1,
+						}
+					} else {
+						uniqueArr[array[i]].count++;
+					}
 				}
+			} else {
+				var uniqueArr = [];
+				for (var i = 0; i < array.length; i++) {
+					if (!contains(uniqueArr, array[i])) {
+						uniqueArr.push(array[i]);
+					} else {
+						continue;
+					}
+				}				
 			}
+
 
 			return uniqueArr;
 		}
@@ -48,9 +84,11 @@ function Ling(text) {
 			count: count,
 			vocabComplexity: vocabComplexity,
 			uniqueCount: uniqueWordsCounter,
-			unique: uniqueWords
+			unique: uniqueWords,
+			get: get,
+			mostCommonWord: mostCommonWord
 		}
-		
+
 	} catch (err) {
 		console.error(err);
 	}
