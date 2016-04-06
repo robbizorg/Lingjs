@@ -18,17 +18,21 @@ function Ling(text) {
 
 		function lettersUsed() {
 			var letters = [];
+			console.log(uniqueWords);
 
-			for (word in unique) {
+			for (wordidx in uniqueWords) {
+				var word = uniqueWords[wordidx];
+
 				for (var i = 0; i < word.length; i++) {
 					var char = word.charAt(i);
-					console.log(char);
-					//if (!contains(word, char)) {
-					letters.push(char);
+
+					if (!contains(letters, char)) {
+						letters.push(char);
+					}
 				}
 			}
 
-			return lettersUsed;
+			return letters;
 		}
 
 		function mostCommonWord() {
