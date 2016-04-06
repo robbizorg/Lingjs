@@ -16,6 +16,21 @@ function Ling(text) {
 			return uniqueWords.length;
 		}
 
+		function lettersUsed() {
+			var letters = [];
+
+			for (word in unique) {
+				for (var i = 0; i < word.length; i++) {
+					var char = word.charAt(i);
+					console.log(char);
+					//if (!contains(word, char)) {
+					letters.push(char);
+				}
+			}
+
+			return lettersUsed;
+		}
+
 		function mostCommonWord() {
 			var max = {word: "placeholder", count: -1};
 			console.log(uniqueWordswithCount);
@@ -86,7 +101,8 @@ function Ling(text) {
 			uniqueCount: uniqueWordsCounter,
 			unique: uniqueWords,
 			get: get,
-			mostCommonWord: mostCommonWord
+			mostCommonWord: mostCommonWord,
+			letters: lettersUsed
 		}
 
 	} catch (err) {

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		} else {
 			console.log(document.getElementById("input").value);
 			var ling = Ling(document.getElementById("input").value);
+			console.log(ling.letters());
 
 			var result = document.getElementById("results");
 
