@@ -4,9 +4,12 @@ function Ling(text) {
 			throw "Missing Argument: No Text Provided";
 		}
 		
+		var Dictionary = "hello love think do be the best you can people amazing".split(" ");
+
 		var arr = text.split(" ");
 		var uniqueWords = unique(arr);
 		var uniqueWordswithCount = unique(arr, {count: true});
+		var letters = lettersUsed();
 
 		function count() {
 			return arr.length;
@@ -59,6 +62,7 @@ function Ling(text) {
 			}
 		}
 
+
 		// Private Functions
 		function unique(array, object) {
 			// Gets the Unique Values in an Array;
@@ -96,6 +100,25 @@ function Ling(text) {
 				} 
 			}
 			return false;
+		}
+
+		// Given an Array of Letters, will
+		// make random new word
+		function makeNewWord(dictionary, letters) {
+			var possible = [];
+			for (word in dictionary) {
+				if (letters.length == 0) {
+					break;
+				}
+
+				for (var i = 0; i < word.length; i++) {
+					var char = word.charAt(i);
+
+					if (contains(letters, char)) {
+						letters.push(char);
+					}
+				}				
+			}
 		}
 
 		return {
