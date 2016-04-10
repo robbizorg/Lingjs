@@ -62,6 +62,10 @@ function Ling(text) {
 			}
 		}
 
+		function newWord() {
+			return makeNewWord(Dictionary, letters);
+		}
+
 
 		// Private Functions
 		function unique(array, object) {
@@ -107,6 +111,7 @@ function Ling(text) {
 		function makeNewWord(dictionary, letters) {
 			var possible = [];
 			for (word in dictionary) {
+				//console.log(letters);
 				if (letters.length == 0) {
 					break;
 				}
@@ -119,6 +124,8 @@ function Ling(text) {
 					}
 				}				
 			}
+
+			return possible;
 		}
 
 		return {
