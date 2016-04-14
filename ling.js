@@ -66,6 +66,26 @@ function Ling(text) {
 			return makeNewWord(Dictionary, letters);
 		}
 
+		function getHtml(website) {
+			function makeHttpObject() {
+			  try {return new XMLHttpRequest();}
+			  catch (error) {}
+			  try {return new ActiveXObject("Msxml2.XMLHTTP");}
+			  catch (error) {}
+			  try {return new ActiveXObject("Microsoft.XMLHTTP");}
+			  catch (error) {}			
+
+			  throw new Error("Could not create HTTP request object.");
+			}
+			var request = makeHttpObject();
+			request.open("GET", website, true);
+			request.send(null);
+			request.onreadystatechange = function() {
+			  if (request.readyState == 4)
+			    return request.responseText;
+			};			
+		}
+
 
 		// Private Functions
 		function unique(array, object) {
@@ -128,6 +148,7 @@ function Ling(text) {
 			return possible;
 		}
 
+
 		return {
 			text: text,
 			count: count,
@@ -136,7 +157,8 @@ function Ling(text) {
 			unique: uniqueWords,
 			get: get,
 			mostCommonWord: mostCommonWord,
-			letters: lettersUsed
+			letters: lettersUsed,
+			getHtml: getHtml
 		}
 
 	} catch (err) {
