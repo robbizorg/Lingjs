@@ -38,6 +38,28 @@ function Ling(text) {
 			return letters;
 		}
 
+		function math() {
+			var stack = [];
+			for (var i = 0; i < arr.length; i++) {
+				switch(arr[i]) {
+					case '+':
+						stack.push(arr[i]);
+						break;
+					case '-':
+						stack.push(arr[i]);
+						break;
+					case '*':
+						stack.push(arr[i]);
+						break;
+					case '/':
+						stack.push(arr[i]);
+						break;
+					default:
+						//Nothing
+				} 
+			}
+		}
+
 		function mostCommonWord() {
 			var max = {word: "placeholder", count: -1};
 			console.log(uniqueWordswithCount);
