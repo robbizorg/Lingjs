@@ -39,7 +39,8 @@ function Ling(text) {
 		}
 
 		function math() {
-			var stack = [];
+			var opStack = [];
+			var degree = [];
 			for (var i = 0; i < arr.length; i++) {
 				switch(arr[i]) {
 					case '+':
@@ -55,7 +56,10 @@ function Ling(text) {
 						stack.push(arr[i]);
 						break;
 					default:
-						//Nothing
+						if (!isInt(arr[i])) {
+							degree.push(arr[i]);
+						}
+
 				} 
 			}
 		}
@@ -168,6 +172,15 @@ function Ling(text) {
 			}
 
 			return possible;
+		}
+
+		function isInt(value) {
+			var x;
+			if (isNan(value)) {
+				return false;
+			}
+			x = parseFloat(value);
+			return (x | 0) === x; 
 		}
 
 
